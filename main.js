@@ -27,18 +27,25 @@ const addDeleteEvents = () => {
     }
 };
 
+const houseSelector = () => {
+let randomNumber = Math.floor((Math.random()*4)+1);
+let houseType = '';
+    if (randomNumber == 1){ houseType ='Griffindoor'};
+    if (randomNumber == 2){ houseType ='Hufflepuff'};
+    if (randomNumber == 3){ houseType ='Slitherin'};
+    if (randomNumber == 4){ houseType ='Ravinclaw'};
+
+  return houseType; 
+};
+
 const domStringBuilder = (arrayToPrint) => { 
    let domString = ''; 
-   const houseSelector = Math.floor((Math.random()*4)+1);
-    if (houseSelector == 1){ domString +='Griffindoor'};
-    if (houseSelector == 2){ domString +='Hufflepuff'};
-    if (houseSelector == 3){ domString +='Slitherin'};
-    if (houseSelector == 4){ domString +='Ravinclaw'};
     /// based on number define house string 
    arrayToPrint.forEach((ingredient) => {
        domString += ` <div class="card col-3">`
        domString += `  <div class="card-body">`;
        domString += `    <h5 class="card-title">${ingredient.item}</h5>`;
+       domString += `    <h5 class="card-title">${ingredient.house}</h5>`;
        domString += `    <a  class="btn btn-danger deleteButton" id=${ingredient.id}>Expel</a>`;
        domString += `  </div>`;
        domString += `</div>`;
@@ -51,9 +58,11 @@ const domStringBuilder = (arrayToPrint) => {
 const addIngredients = (e) => {
     e.preventDefault();
     const inputText = inputIngredient.value;
+    const studentHouse = houseSelector();
     const newIngredient = {
         item: inputText, 
         id: `ingredient${ingredientCounter}`,
+        house: studentHouse, 
     };
     ingredients.push(newIngredient);
     ingredientCounter++;
