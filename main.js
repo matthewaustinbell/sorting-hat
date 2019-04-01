@@ -1,4 +1,3 @@
-    
 const addButton = document.getElementById('addButton')
 const inputIngredient = document.getElementById('inputIngredient');
 
@@ -30,11 +29,17 @@ const addDeleteEvents = () => {
 
 const domStringBuilder = (arrayToPrint) => { 
    let domString = ''; 
+   const houseSelector = Math.floor((Math.random()*4)+1);
+    if (houseSelector == 1){ domString +='Griffindoor'};
+    if (houseSelector == 2){ domString +='Hufflepuff'};
+    if (houseSelector == 3){ domString +='Slitherin'};
+    if (houseSelector == 4){ domString +='Ravinclaw'};
+    /// based on number define house string 
    arrayToPrint.forEach((ingredient) => {
        domString += ` <div class="card col-3">`
        domString += `  <div class="card-body">`;
        domString += `    <h5 class="card-title">${ingredient.item}</h5>`;
-       domString += `    <a  class="btn btn-danger deleteButton" id=${ingredient.id}>Delete</a>`;
+       domString += `    <a  class="btn btn-danger deleteButton" id=${ingredient.id}>Expel</a>`;
        domString += `  </div>`;
        domString += `</div>`;
      });
